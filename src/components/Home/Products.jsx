@@ -1,6 +1,6 @@
 const Products = (tshirt) => {
   console.log(tshirt.tshirt);
-  const { name, picture, price, _id } = tshirt.tshirt;
+  const { name, picture, price } = tshirt.tshirt;
   return (
     <div>
       <img src={picture} alt="photo" className="w-52 rounded-md h-56 mx-auto" />
