@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import "react-toastify/dist/ReactToastify.css";
 const Products = ({ tshirt, addToCart }) => {
   //   console.log(tshirt);
   const { name, picture, price } = tshirt;

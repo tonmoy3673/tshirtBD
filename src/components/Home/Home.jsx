@@ -6,19 +6,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-// minified version is also included
-// import 'react-toastify/dist/ReactToastify.min.css';
 
-function App() {
-  const notify = () => toast("Wow so easy !");
-
-  return (
-    <div>
-      <button onClick={notify}>Notify !</button>
-      <ToastContainer />
-    </div>
-  );
-}
 const Home = () => {
   const tshirts = useLoaderData();
 
@@ -40,6 +28,16 @@ const Home = () => {
     } else {
       const newCart = [...cart, tshirt];
       setCart(newCart);
+      toast(" Added to Cart!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -59,7 +57,7 @@ const Home = () => {
             <h2 className="text-xl text-sky-800 font-semibold">
               Order Details
             </h2>
-            <Cart />
+            <Cart cart={cart} />
           </div>
         </div>
       </div>
