@@ -12,6 +12,11 @@ const Home = () => {
 
   const [cart, setCart] = useState([]);
 
+  const deleteCart = (id) => {
+    const remove = cart.filter((item) => item._id !== id);
+    setCart(remove);
+  };
+
   const addToCart = (tshirt) => {
     const exists = cart?.find((ts) => ts._id === tshirt._id);
     if (exists) {
@@ -57,7 +62,7 @@ const Home = () => {
             <h2 className="text-xl text-sky-800 font-semibold">
               Order Details
             </h2>
-            <Cart cart={cart} />
+            <Cart cart={cart} deleteCart={deleteCart} />
           </div>
         </div>
       </div>
