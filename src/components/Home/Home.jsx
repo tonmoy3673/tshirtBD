@@ -1,15 +1,46 @@
 import { useLoaderData } from "react-router-dom";
 import Products from "./Products";
 import Cart from "../Cart/Cart";
-// import { useState } from "react";
+import { useState } from "react";
 
+import { toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+// minified version is also included
+// import 'react-toastify/dist/ReactToastify.min.css';
+
+function App() {
+  const notify = () => toast("Wow so easy !");
+
+  return (
+    <div>
+      <button onClick={notify}>Notify !</button>
+      <ToastContainer />
+    </div>
+  );
+}
 const Home = () => {
   const tshirts = useLoaderData();
 
-  //   const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const addToCart = (tshirt) => {
-    console.log(tshirt);
+    const exists = cart?.find((ts) => ts._id === tshirt._id);
+    if (exists) {
+      toast("You already added this product!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      const newCart = [...cart, tshirt];
+      setCart(newCart);
+    }
   };
 
   return (
