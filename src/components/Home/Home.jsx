@@ -1,10 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import Products from "./Products";
 import Cart from "../Cart/Cart";
+// import { useState } from "react";
 
 const Home = () => {
   const tshirts = useLoaderData();
-  console.log(tshirts);
+
+  //   const [cart, setCart] = useState([]);
+
+  const addToCart = (tshirt) => {
+    console.log(tshirt);
+  };
 
   return (
     <div>
@@ -14,7 +20,7 @@ const Home = () => {
       <div className="flex justify-center">
         <div className="py-10 grid md:grid-cols-3 grid-cols-1 gap-10 px-16 w-8/12">
           {tshirts?.map((tshirt) => (
-            <Products key={tshirt._id} tshirt={tshirt} />
+            <Products key={tshirt._id} tshirt={tshirt} addToCart={addToCart} />
           ))}
         </div>
         <div className="relative w-4/12 text-center">

@@ -1,6 +1,8 @@
-const Products = (tshirt) => {
-  console.log(tshirt.tshirt);
-  const { name, picture, price } = tshirt.tshirt;
+import PropTypes from "prop-types";
+
+const Products = ({ tshirt, addToCart }) => {
+  //   console.log(tshirt);
+  const { name, picture, price } = tshirt;
   return (
     <div>
       <img src={picture} alt="photo" className="w-52 rounded-md h-56 mx-auto" />
@@ -11,12 +13,23 @@ const Products = (tshirt) => {
         Price : <span className="text-red-500">{price}$</span>
       </h2>
       <div className="py-3 text-center">
-        <button className="bg-blue-500 py-2 px-3 hover:bg-orange-500 rounded-lg">
+        <button
+          onClick={() => addToCart(tshirt)}
+          className="bg-blue-500 py-2 px-3 hover:bg-orange-500 rounded-lg"
+        >
           Buy Now
         </button>
       </div>
     </div>
   );
 };
-
+Products.propTypes = {
+  tshirt: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    // Add more properties as needed
+  }).isRequired,
+  addToCart: PropTypes.func.isRequired,
+};
 export default Products;
